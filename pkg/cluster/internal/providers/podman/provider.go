@@ -422,7 +422,7 @@ func info(logger log.Logger) (*providers.ProviderInfo, error) {
 	if v.AtLeast(version.MustParseSemantic("4.0.0")) {
 		cgroupSupportsMemoryLimit = stringSliceContains(pInfo.Host.CgroupControllers, "memory")
 		cgroupSupportsPidsLimit = stringSliceContains(pInfo.Host.CgroupControllers, "pids")
-		cgroupSupportsCPUShares = stringSliceContains(pInfo.Host.CgroupControllers, "cpu")
+		cgroupSupportsCPUShares = stringSliceContains(pInfo.Host.CgroupControllers, "cpu") || stringSliceContains(pInfo.Host.CgroupControllers, "cpuset")
 	}
 
 	info := &providers.ProviderInfo{
